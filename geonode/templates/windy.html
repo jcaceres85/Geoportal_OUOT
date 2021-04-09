@@ -1,0 +1,16 @@
+{% extends "geonode_base.html" %}
+
+{% load i18n %}
+{% block title %} {% trans "Tiempo" %} — {{ block.super }} {% endblock %}
+
+{% block body_outer %}
+        
+
+<div id="Title" style="background: #333333;">
+        <h2 style="color:white;"> Monitoreo en Tiempo Real Evento IOTA </h2>
+        </div>
+        <div class="windy-container" style="background: #333333;">
+               <p align="center" ><iframe width="1024" height="720" <iframe width="1024" height="720" src="https://embed.windy.com/embed2.html?lat=14.966&lon=-86.539&detailLat=14.966&detailLon=-85.627&width=1024&height=720&zoom=7&level=surface&overlay=wind&product=ecmwf&menu=&message=&marker=&calendar=now&pressure=&type=map&location=coordinates&detail=&metricWind=km%2Fh&metricTemp=%C2%B0C&radarRange=-1" frameborder="0"></iframe> </p>
+        </div>
+
+{% endblock %}

@@ -1,0 +1,10 @@
+version: '2.2'
+services:
+
+  django:
+    build: .
+    volumes:
+      - '.:/usr/src/app'
+
+  celery:
+    build: .

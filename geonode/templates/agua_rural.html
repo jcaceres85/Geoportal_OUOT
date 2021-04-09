@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% block title %} {% trans "Agua Rural" %} — {{ block.super }} {% endblock %}
+
+        {% block head %}
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
+		<link rel="stylesheet" type="text/css" href="https://geoportalouot.unah.edu.hn/static/geonode/agua_rural/css/own_style.css">
+		<link rel="stylesheet" href="https://geoportalouot.unah.edu.hn/static/geonode/agua_rural/css/label.css" />
+		<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
+		<script src="https://geoportalouot.unah.edu.hn/static/geonode/agua_rural/js/leaflet-hash.js"></script>
+		<script src="https://geoportalouot.unah.edu.hn/static/geonode/agua_rural/js/label.js"></script>
+		<script src="https://geoportalouot.unah.edu.hn/static/geonode/agua_rural/js/Autolinker.min.js"></script>
+                {{ block.super }}
+        {% endblock %}
+	
+        {% block body %}
+		<div id="map"></div>
+		<script src="https://geoportalouot.unah.edu.hn/static/geonode/agua_rural/data/exp_LimiteDepartamental.js"></script>
+		<script src="https://geoportalouot.unah.edu.hn/static/geonode/agua_rural/data/exp_11AguaRural.js"></script>
+		<script>
+		var map = L.map('map', {
+			zoomControl:true, maxZoom:19
+		}).fitBounds([[12.8806596527,-89.7030045456],[16.564950845,-82.7524776115]]);
+		var hash = new L.Hash(map);
+		var additional_attrib = 'created w. <a href="https://github.com/geolicious/qgis2leaf" target ="_blank">qgis2leaf</a> by <a href="http://www.geolicious.de" target ="_blank">Geolicious</a> & contributors<br>';
+		var feature_group = new L.featureGroup([]);
+		var raster_group = new L.LayerGroup([]);
+		var basemap_0 = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { 
+			attribution: additional_attrib + '&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors,<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
+		});	
+		basemap_0.addTo(map);
+		var basemap_1 = L.tileLayer('http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png', { 
+			attribution: additional_attrib + '&copy; <a href="http://www.opencyclemap.org">OpenCycleMap</a>, &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
+		});	
+		var layerOrder=new Array();
+		function pop_11AguaRural(feature, layer) {					
+			var popupContent = '<table><tr><th scope="row">Id_Departamento</th><td>' + Autolinker.link(String(feature.properties['ID_DEP'])) + '</td></tr><tr><th scope="row">Departamento</th><td>' + Autolinker.link(String(feature.properties['DEPTO'])) + '</td></tr><tr><th scope="row">Id_Municipio</th><td>' + Autolinker.link(String(feature.properties['ID_MUN'])) + '</td></tr><tr><th scope="row">Municipio</th><td>' + Autolinker.link(String(feature.properties['MUNICIPIO'])) + '</td></tr><tr><th scope="row">Codigo_Municipal</th><td>' + Autolinker.link(String(feature.properties['COD_MUN'])) + '</td></tr><tr><th scope="row">AECID</th><td>' + Autolinker.link(String(feature.properties['AECID'])) + '</td></tr><tr><th scope="row">Banco_Mundial</th><td>' + Autolinker.link(String(feature.properties['BM'])) + '</td></tr><tr><th scope="row">BCIE</th><td>' + Autolinker.link(String(feature.properties['BCIE'])) + '</td></tr><tr><th scope="row">BID</th><td>' + Autolinker.link(String(feature.properties['BID'])) + '</td></tr><tr><th scope="row">Cooperacion_Suiza</th><td>' + Autolinker.link(String(feature.properties['COSUDE'])) + '</td></tr><tr><th scope="row">JICA</th><td>' + Autolinker.link(String(feature.properties['JICA'])) + '</td></tr><tr><th scope="row">OPS</th><td>' + Autolinker.link(String(feature.properties['OPS'])) + '</td></tr><tr><th scope="row">UNICEF</th><td>' + Autolinker.link(String(feature.properties['UNICEF'])) + '</td></tr><tr><th scope="row">Union_Europea</th><td>' + Autolinker.link(String(feature.properties['UE'])) + '</td></tr><tr><th scope="row">Total_USD</th><td>' + Autolinker.link(String(feature.properties['TOTAL'])) + '</td></tr><tr><th scope="row">No_Agencias</th><td>' + Autolinker.link(String(feature.properties['N_ACTUACI'])) + '</td></tr></table>';
+			layer.bindPopup(popupContent);
+		}
+
+		function doStyle11AguaRural(feature) {
+			if (feature.properties.TOTAL >= 0.0 && feature.properties.TOTAL <= 0.0) {
+				return {
+					color: '#aaaaaa',
+					weight: '1.3',
+					fillColor: '#ececec',
+					opacity: '1.0',
+					fillOpacity: '1.0',
+				}
+			}
+			if (feature.properties.TOTAL >= 0.0 && feature.properties.TOTAL <= 100000.0) {
+				return {
+					color: '#000000',
+					weight: '1.3',
+					fillColor: '#ccebca',
+					opacity: '1.0',
+					fillOpacity: '1.0',
+				}
+			}
+			if (feature.properties.TOTAL >= 100000.0 && feature.properties.TOTAL <= 500000.0) {
+				return {
+					color: '#000000',
+					weight: '1.3',
+					fillColor: '#a5dcbe',
+					opacity: '1.0',
+					fillOpacity: '1.0',
+				}
+			}
+			if (feature.properties.TOTAL >= 500000.0 && feature.properties.TOTAL <= 1000000.0) {
+				return {
+					color: '#000000',
+					weight: '1.3',
+					fillColor: '#7bccc4',
+					opacity: '1.0',
+					fillOpacity: '1.0',
+				}
+			}
+			if (feature.properties.TOTAL >= 1000000.0 && feature.properties.TOTAL <= 5000000.0) {
+				return {
+					color: '#000000',
+					weight: '1.3',
+					fillColor: '#55b0c8',
+					opacity: '1.0',
+					fillOpacity: '1.0',
+				}
+			}
+			if (feature.properties.TOTAL >= 5000000.0 && feature.properties.TOTAL <= 10000000.0) {
+				return {
+					color: '#000000',
+					weight: '1.3',
+					fillColor: '#2f8ec0',
+					opacity: '1.0',
+					fillOpacity: '1.0',
+				}
+			}
+			if (feature.properties.TOTAL >= 10000000.0 && feature.properties.TOTAL <= 50000000.0) {
+				return {
+					color: '#000000',
+					weight: '1.3',
+					fillColor: '#0868ac',
+					opacity: '1.0',
+					fillOpacity: '1.0',
+				}
+			}
+		}
+		var exp_11AguaRuralJSON = new L.geoJson(exp_11AguaRural,{
+			onEachFeature: pop_11AguaRural,
+			style: doStyle11AguaRural
+		});
+		//add comment sign to hide this layer on the map in the initial view.
+		feature_group.addLayer(exp_11AguaRuralJSON);
+		function pop_LimiteDepartamental(feature, layer) {					
+			var popupContent = '<table><tr><th scope="row">OBJECTID</th><td>' + Autolinker.link(String(feature.properties['OBJECTID'])) + '</td></tr><tr><th scope="row">COD</th><td>' + Autolinker.link(String(feature.properties['COD'])) + '</td></tr><tr><th scope="row">DEPTO</th><td>' + Autolinker.link(String(feature.properties['DEPTO'])) + '</td></tr><tr><th scope="row">CODPAIS</th><td>' + Autolinker.link(String(feature.properties['CODPAIS'])) + '</td></tr></table>';
+			layer.bindPopup(popupContent);
+		}
+
+		function doStyleLimiteDepartamental(feature) {
+				return {
+					color: '#000000',
+					fillColor: '#ececec',
+					weight: 2.5,
+					dashArray: '',
+					opacity: 1.0,
+					fillOpacity: 1.0
+				};
+
+		}
+		var exp_LimiteDepartamentalJSON = new L.geoJson(exp_LimiteDepartamental,{
+			onEachFeature: pop_LimiteDepartamental,
+			style: doStyleLimiteDepartamental
+		});
+		layerOrder[layerOrder.length] = exp_LimiteDepartamentalJSON;
+		for (index = 0; index < layerOrder.length; index++) {
+			feature_group.removeLayer(layerOrder[index]);feature_group.addLayer(layerOrder[index]);
+		}
+		//add comment sign to hide this layer on the map in the initial view.
+		feature_group.addLayer(exp_LimiteDepartamentalJSON);
+
+		feature_group.addTo(map);
+		var title = new L.Control();
+		title.onAdd = function (map) {
+			this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+			this.update();
+			return this._div;
+		};
+		title.update = function () {
+			this._div.innerHTML = '<h2>11 - Agua Rural</h2>'
+		};
+		title.addTo(map);
+		var legend = L.control({position: 'bottomright'});
+		legend.onAdd = function (map) {
+			var div = L.DomUtil.create('div', 'info legend');
+			div.innerHTML = "<h3>Legend</h3><table></table>";
+    		return div;
+		};
+		legend.addTo(map);
+	var baseMaps = {
+		'OSM Standard': basemap_0,
+		'Thunderforest Landscape': basemap_1};
+		L.control.layers(baseMaps,{"LimiteDepartamental": exp_LimiteDepartamentalJSON,"11AguaRural": exp_11AguaRuralJSON},{collapsed:false}).addTo(map);
+		L.control.scale({options: {position: 'bottomleft',maxWidth: 100,metric: true,imperial: false,updateWhenIdle: false}}).addTo(map);
+	</script>
+        {% endblock %}
