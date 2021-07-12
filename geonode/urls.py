@@ -75,6 +75,17 @@ urlpatterns = [
     url(r'^privacy_cookies/$',
         TemplateView.as_view(template_name='privacy-cookies.html'),
         name='privacy-cookies'),
+    url(r'^eta-iota/$',
+        TemplateView.as_view(template_name='gee_eta_iota.html'),
+        name='ETA-IOTA'),
+    url(r'^perdida-bosque-global/$',
+        TemplateView.as_view(template_name='gee_perdida_bosque.html'),
+        name='Perdida-Bosque-Global'),
+    url(r'^timelapse/$',
+        TemplateView.as_view(template_name='gee_timelapse.html'),
+        name='Timelapse'),
+
+
 
     # Meta
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps},

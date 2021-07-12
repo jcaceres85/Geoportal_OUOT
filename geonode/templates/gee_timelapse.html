@@ -1,0 +1,13 @@
+{% extends "geonode_base.html" %}
+
+{% load i18n %}
+{% block title %} {% trans "Timelapse" %} - {{ block.super }} {% endblock %}
+
+{% block body_outer %}
+<div class="container">
+    <iframe src="https://earthengine.google.com/iframes/timelapse_player_embed.html#v=14.07185,-87.19621,10.833,latLng&t=2.72&ps=50&bt=19840101&et=20201231&startDwell=0&endDwell=0" frameborder="0" style="overflow:hidden;overflow-x:hidden;overflow-y:hidden;height:95%;width:100%;position:absolute;top:50px;left:0px;right:0px;bottom:0px" height="100%" width="100%"></iframe>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
