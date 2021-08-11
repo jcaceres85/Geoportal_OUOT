@@ -52,6 +52,10 @@ VERSION = get_version()
 
 DEFAULT_CHARSET = "utf-8"
 
+#SITENAME
+SITENAME = 'Geoportal OUOT'
+SITE_NAME = 'Geoportal OUOT'
+
 # Defines the directory that contains the settings file as the PROJECT_ROOT
 # It is used for relative settings elsewhere.
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
@@ -78,8 +82,10 @@ if EMAIL_ENABLE:
     EMAIL_HOST_USER = os.getenv('DJANGO_EMAIL_HOST_USER', '')
     EMAIL_HOST_PASSWORD = os.getenv('DJANGO_EMAIL_HOST_PASSWORD', '')
     EMAIL_USE_TLS = ast.literal_eval(os.getenv('DJANGO_EMAIL_USE_TLS', 'False'))
-    EMAIL_USE_SSL = ast.literal_eval(os.getenv('DJANGO_EMAIL_USE_SSL', 'False'))
-    DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'GeoNode <no-reply@geonode.org>')
+   # EMAIL_USE_SSL = ast.literal_eval(os.getenv('DJANGO_EMAIL_USE_SSL', 'False'))
+   # DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'GeoNode <no-reply@geonode.org>')
+    DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+    SERVER_EMAIL = EMAIL_HOST_USER
 else:
     EMAIL_BACKEND = os.getenv('DJANGO_EMAIL_BACKEND',
                               default='django.core.mail.backends.console.EmailBackend')
@@ -1584,14 +1590,14 @@ if GEONODE_CLIENT_LAYER_PREVIEW_LIBRARY == 'mapstore':
     if MAPBOX_ACCESS_TOKEN:
         BASEMAP = {
             "type": "tileprovider",
-            "title": "MapBox streets-v11",
+            "title": "MapBox light-v10",
             "provider": "MapBoxStyle",
-            "name": "MapBox streets-v11",
+            "name": "MapBox light-v10",
             "accessToken": f"{MAPBOX_ACCESS_TOKEN}",
-            "source": "streets-v11",
-            "thumbURL": f"https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/256/6/33/23?access_token={MAPBOX_ACCESS_TOKEN}",  # noqa
+            "source": "light-v10",
+            "thumbURL": f"https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/6/33/23?access_token={MAPBOX_ACCESS_TOKEN}",  # noqa
             "group": "background",
-            "visibility": True
+            "visibility": False
         }
         DEFAULT_MS2_BACKGROUNDS = [BASEMAP, ] + DEFAULT_MS2_BACKGROUNDS
 

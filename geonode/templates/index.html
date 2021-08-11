@@ -23,8 +23,11 @@
       <h1>{% trans jumbotron_welcome_title %}</h1>
       {% endwith %}
       <p></p>
-      {% with jumbotron_welcome_content=custom_theme.jumbotron_welcome_content|default:"GeoNode is an open source platform for sharing geospatial data and maps."|template_trans %}
-      <p>{% trans jumbotron_welcome_content %}</p>
+<!--      {% with jumbotron_welcome_content=custom_theme.jumbotron_welcome_content|default:"GeoNode is an open source platform for sharing geospatial data and maps."|template_trans %} -->
+      <p>{% trans "The University Observatory of Territorial Planning, proposed by the Faculty of Space Sciences through the Master's Degree in Territorial Planning and Management, is a specialized center that collects, processes, analyzes, interprets, systematizes and disseminates information on the subject of Territorial Planning and Geographic Information Technologies, aimed at supporting and substantiating the scientific research of the UNAH and contributing to the rigorous knowledge of the subject in the country." %}
+      <br><p></p></br>
+      <p>{% trans "This Geoportal, based on GeoNode, aims to be an open repository of information to share geospatial data and maps, which can be consulted by the university community and the general population." %}
+<!--      <p>{% trans jumbotron_welcome_content %}</p> -->
       {% endwith %}
       {% if not custom_theme.jumbotron_cta_hide %}
       <p><a class="btn btn-default btn-lg" target="_blank"
