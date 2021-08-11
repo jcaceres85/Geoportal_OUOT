@@ -8,7 +8,7 @@
 Table of Contents
 =================
 
--  [What is OUOT](#ouot)
+-  [What is OUOT](#what-is-ouot)
 -  [What is GeoNode?](#what-is-geonode)
 -  [Most useful links](#most-useful-links)
 -  [Licensing](#licensing)
