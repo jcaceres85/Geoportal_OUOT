@@ -51,6 +51,10 @@ VERSION = get_version()
 
 DEFAULT_CHARSET = "utf-8"
 
+#SITENAME
+SITENAME = os.getenv('SITENAME', 'Geoportal OUOT')
+SITE_NAME = os.getenv('SITE_NAME', 'Geoportal OUOT')
+
 # Defines the directory that contains the settings file as the PROJECT_ROOT
 # It is used for relative settings elsewhere.
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
@@ -1598,14 +1602,14 @@ if GEONODE_CLIENT_LAYER_PREVIEW_LIBRARY == 'mapstore':
     if MAPBOX_ACCESS_TOKEN:
         BASEMAP = {
             "type": "tileprovider",
-            "title": "MapBox streets-v11",
+            "title": "MapBox light-v10",
             "provider": "MapBoxStyle",
-            "name": "MapBox streets-v11",
+            "name": "MapBox light-v10",
             "accessToken": f"{MAPBOX_ACCESS_TOKEN}",
-            "source": "streets-v11",
-            "thumbURL": f"https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/256/6/33/23?access_token={MAPBOX_ACCESS_TOKEN}",  # noqa
+            "source": "light-v10",
+            "thumbURL": f"https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/6/33/23?access_token={MAPBOX_ACCESS_TOKEN}",  # noqa
             "group": "background",
-            "visibility": True
+            "visibility": False
         }
         DEFAULT_MS2_BACKGROUNDS = [BASEMAP, ] + DEFAULT_MS2_BACKGROUNDS
 

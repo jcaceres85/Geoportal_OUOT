@@ -97,3 +97,7 @@ scripts/spcgeonode/_volume_*
 /output.bin
 
 /worker.state
+
+#OUOT
+docker-compose.override.ip.yml
+geonode/static/geonode/documents/

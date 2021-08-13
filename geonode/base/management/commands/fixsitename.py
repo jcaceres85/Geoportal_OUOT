@@ -30,7 +30,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         from django.conf import settings
-        name = getattr(settings, 'SITENAME', 'GeoNode')
+        name = getattr(settings, 'SITENAME', 'Geoportal OUOT')
         site_url = getattr(settings, 'SITEURL')
         url = site_url.rstrip('/') if site_url.startswith('http') else site_url
         parsed = urlsplit(url)
