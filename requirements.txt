@@ -134,7 +134,7 @@ uWSGI==2.0.19.1
 gunicorn==20.1.0
 ipython==7.24.1
 docker==4.4.4
-invoke==1.5.0
+invoke==1.7.3
 
 # tests
 coverage==5.5
