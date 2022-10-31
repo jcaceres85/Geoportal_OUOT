@@ -139,7 +139,7 @@ invoke==1.5.0
 # tests
 coverage==5.5
 parse-type==0.5.2
-requests-toolbelt==0.9.1
+requests-toolbelt==0.10.1
 flake8==3.9.2
 pytest==6.2.4
 pytest-bdd==4.0.2
